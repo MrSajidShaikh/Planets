@@ -25,7 +25,8 @@ class _FavoritesPageState extends State<FavoritesPage> {
       List<dynamic> jsonList = json.decode(favoritesData);
       setState(() {
         favoritePlanets = jsonList
-            .map((planet) => PlanetInfo.fromMap(Map<String, dynamic>.from(planet)))
+            .map((planet) =>
+                PlanetInfo.fromMap(Map<String, dynamic>.from(planet)))
             .toList();
       });
     }
@@ -33,7 +34,8 @@ class _FavoritesPageState extends State<FavoritesPage> {
 
   void _saveFavorites() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    List<Map<String, dynamic>> favoritesMap = favoritePlanets.map((planet) => planet.toMap()).toList();
+    List<Map<String, dynamic>> favoritesMap =
+        favoritePlanets.map((planet) => planet.toMap()).toList();
     String favoritesJson = json.encode(favoritesMap);
     await prefs.setString('favoritePlanets', favoritesJson);
   }
@@ -51,103 +53,107 @@ class _FavoritesPageState extends State<FavoritesPage> {
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: favoritePlanets.isEmpty
               ? const Center(
-            child: Text(
-              'No favorite planets yet!',
-              style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w300,
-                  color: Colors.black),
-            ),
-          )
+                  child: Text(
+                    'No favorite planets yet!',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.black),
+                  ),
+                )
               : SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Divider(color: Colors.black38),
-                const SizedBox(height: 15),
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: favoritePlanets.length,
-                  itemBuilder: (context, index) {
-                    final planet = favoritePlanets[index];
-                    Object heroTag = planet.name ?? planet.id ?? "planet_$index"; // Use unique identifier for tag
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Divider(color: Colors.black38),
+                      const SizedBox(height: 15),
+                      ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: favoritePlanets.length,
+                        itemBuilder: (context, index) {
+                          final planet = favoritePlanets[index];
+                          Object heroTag = planet.name ??
+                              planet.id ??
+                              "planet_$index"; // Use unique identifier for tag
 
-                    return Card(
-                      clipBehavior: Clip.antiAlias,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(24),
-                      ),
-                      elevation: 5,
-                      margin: const EdgeInsets.only(bottom: 20),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Hero(
-                              tag: heroTag, // Use unique hero tag
-                              child: Image.asset(
-                                planet.iconImage.toString(),
-                                height: 80,
-                                width: 80,
-                              ),
+                          return Card(
+                            clipBehavior: Clip.antiAlias,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(24),
                             ),
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    planet.name.toString(),
-                                    style: const TextStyle(
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w900,
-                                      color: Colors.black,
+                            elevation: 5,
+                            margin: const EdgeInsets.only(bottom: 20),
+                            child: Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Hero(
+                                    tag: heroTag, // Use unique hero tag
+                                    child: Image.asset(
+                                      planet.iconImage.toString(),
+                                      height: 80,
+                                      width: 80,
                                     ),
                                   ),
-                                  const SizedBox(height: 5),
-                                  Text(
-                                    planet.description!,
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w300,
-                                      color: Colors.black.withOpacity(0.7),
-                                    ),
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          IconButton(
-                            icon: const Icon(
-                              Icons.delete,
-                              color: Colors.red,
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                favoritePlanets.removeAt(index);
-                              });
-                              _saveFavorites(); // Save after removing
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text('${planet.name} removed'),
                                 ),
-                              );
-                            },
-                          ),
-                        ],
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          planet.name.toString(),
+                                          style: const TextStyle(
+                                            fontSize: 24,
+                                            fontWeight: FontWeight.w900,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 5),
+                                        Text(
+                                          planet.description!,
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w300,
+                                            color:
+                                                Colors.black.withOpacity(0.7),
+                                          ),
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                IconButton(
+                                  icon: const Icon(
+                                    Icons.delete,
+                                    color: Colors.red,
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      favoritePlanets.removeAt(index);
+                                    });
+                                    _saveFavorites(); // Save after removing
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text('${planet.name} removed'),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
+                          );
+                        },
                       ),
-                    );
-                  },
+                    ],
+                  ),
                 ),
-              ],
-            ),
-          ),
         ),
       ),
     );
