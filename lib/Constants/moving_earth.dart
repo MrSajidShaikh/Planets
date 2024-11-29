@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
-
 import 'earth_animation.dart';
 
 class MovingEarth extends StatefulWidget {
-  const MovingEarth({super.key, required this.child, required this.animatePosition, required this.durationInMs, required this.delayInMs});
+  const MovingEarth(
+      {super.key,
+      required this.child,
+      required this.animatePosition,
+      required this.durationInMs,
+      required this.delayInMs});
+
   final Widget child;
   final EarthAnimation animatePosition;
   final int durationInMs, delayInMs;
@@ -20,10 +25,12 @@ class _MovingEarthState extends State<MovingEarth> {
     super.initState();
     changeAnimation();
   }
+
   @override
   void dispose() {
     super.dispose();
   }
+
   Widget build(BuildContext context) {
     return AnimatedPositioned(
       duration: Duration(milliseconds: widget.durationInMs),

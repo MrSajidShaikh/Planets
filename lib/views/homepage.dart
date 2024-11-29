@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_plus/flutter_swiper_plus.dart';
-
+import 'package:planets/views/favourite_page.dart';
 import '../model/datas.dart';
-import 'constants.dart';
+import '../Constants/constants.dart';
 import 'detailsview.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,6 +17,19 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: gradientEndColor,
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.favorite),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) =>  FavoritesPage()),
+              );
+            },
+          ),
+        ],
+      ),
       body: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -175,7 +188,7 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                           Hero(
-                              tag: planets[index].position,
+                              tag: planets[index].position.toString(),
                               child: Image.asset(
                                   planets[index].iconImage.toString()))
                         ],
