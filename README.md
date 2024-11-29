@@ -1,16 +1,5 @@
-# planets
+# Planets 🌌
 
-A new Flutter project.
+**It’s an app that allows users to find out more about planets🌎**<br>
+-A splash screen with a beautiful photo of the Earth welcomes users. On the main screen, there are sections **'planets'**, **'comets'**,**'stars'**, **'satellites'**. Users can read astronomy news and check the cards of space objects. On the overview screen, we can read information about the planet and see photos.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
