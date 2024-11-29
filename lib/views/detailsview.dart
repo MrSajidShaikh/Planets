@@ -1,7 +1,5 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import '../model/datas.dart'; // Import your PlanetInfo model
+import '../model/datas.dart';
 
 class DetailsView extends StatefulWidget {
   final PlanetInfo? planetInfo;
@@ -13,40 +11,13 @@ class DetailsView extends StatefulWidget {
 }
 
 class _DetailsViewState extends State<DetailsView> {
-  late bool isFavorite = false ;
+  late bool isFavorite;
 
   @override
   void initState() {
     super.initState();
-    // Load favorite planets when the page is initialized
-    _loadFavorites();
-  }
-
-  // Load favorite planets from SharedPreferences
-  void _loadFavorites() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? favoritesData = prefs.getString('favoritePlanets');
-    if (favoritesData != null) {
-      List<dynamic> jsonList = json.decode(favoritesData);
-      setState(() {
-        favoritePlanets = jsonList
-            .map((planet) => PlanetInfo.fromMap(Map<String, dynamic>.from(planet)))
-            .toList();
-        isFavorite = favoritePlanets.contains(widget.planetInfo);
-      });
-    } else {
-      setState(() {
-        isFavorite = false;
-      });
-    }
-  }
-
-  // Save favorite planets to SharedPreferences
-  void _saveFavorites() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    List<Map<String, dynamic>> favoritesMap = favoritePlanets.map((planet) => planet.toMap()).toList();
-    String favoritesJson = json.encode(favoritesMap);
-    await prefs.setString('favoritePlanets', favoritesJson);
+    // Check if the planet is already in the favorite list
+    isFavorite = favoritePlanets.contains(widget.planetInfo);
   }
 
   void toggleFavorite() {
@@ -58,7 +29,6 @@ class _DetailsViewState extends State<DetailsView> {
       }
       isFavorite = !isFavorite;
     });
-    _saveFavorites(); // Save the updated favorites list
   }
 
   @override

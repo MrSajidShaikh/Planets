@@ -1,54 +1,18 @@
-import 'dart:convert';
-
 class PlanetInfo {
-  int? id;
-  String? name;
-  String? position;
-  String? iconImage;
-  String? description;
-  List<String>? images;
+  final int position;
+  final String name;
+  final String iconImage;
+  final String description;
+  final List<String>? images;
 
-  PlanetInfo(this.id, {
-    this.name,
-    this.position,
-    this.iconImage,
-    this.description,
+  PlanetInfo(
+    this.position, {
+    required this.name,
+    required this.iconImage,
+    required this.description,
     this.images,
   });
-
-  // Convert a PlanetInfo object into a map
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'name': name,
-      'position': position,
-      'iconImage': iconImage,
-      'description': description,
-      'images': images,
-    };
-  }
-
-  // Convert a map into a PlanetInfo object
-  factory PlanetInfo.fromMap(Map<String, dynamic> map) {
-    return PlanetInfo(
-      map['id'], // Ensure 'id' is used when creating a PlanetInfo object
-      name: map['name'],
-      position: map['position'],
-      iconImage: map['iconImage'],
-      description: map['description'],
-      images: List<String>.from(map['images']),
-    );
-  }
-
-  // Convert a PlanetInfo object to JSON
-  String toJson() => json.encode(toMap());
-
-  // Convert JSON to a PlanetInfo object
-  factory PlanetInfo.fromJson(String source) =>
-      PlanetInfo.fromMap(json.decode(source));
 }
-
-
 
 List<PlanetInfo> favoritePlanets = [];
 

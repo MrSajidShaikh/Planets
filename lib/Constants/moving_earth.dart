@@ -31,6 +31,7 @@ class _MovingEarthState extends State<MovingEarth> {
     super.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
     return AnimatedPositioned(
       duration: Duration(milliseconds: widget.durationInMs),
