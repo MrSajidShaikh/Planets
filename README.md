@@ -1,7 +1,7 @@
 # Planets 🌌
 
 **It’s an app that allows users to find out more about planets🌎**<br>
--A splash screen with a beautiful photo of the Earth welcomes users. On the main screen, there are sections **'planets'**, **'comets'**,**'stars'**, **'satellites'**. Users can read astronomy news and check the cards of space objects. On the overview screen, we can read information about the planet and see photos.
+-A splash screen with a beautiful photo of the Earth welcomes users. On the main screen, there are sections **'planets'**, **'comets'**,**'stars'**, **'satellites'**. Users can read astronomy news and check the cards of space objects. We can read information about the planet on the overview screen and see photos.
 
 # Photos
 <img src = "https://github.com/user-attachments/assets/6d576ff3-f6cc-46cd-bea0-6af03e2fcc9b"  height=35% width=22%  />
